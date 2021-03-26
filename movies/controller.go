@@ -1,17 +1,16 @@
-package controller
+package movies
 
 import (
-	"golang-cday-lab/movies/repository"
 	"net/http"
 
 	"github.com/gin-gonic/gin"
 )
 
 type controller struct {
-	repository repository.MovieRepository
+	repository MovieRepository
 }
 
-func NewMovieController(repository repository.MovieRepository) controller {
+func NewMovieController(repository MovieRepository) controller {
 	return controller{repository}
 }
 

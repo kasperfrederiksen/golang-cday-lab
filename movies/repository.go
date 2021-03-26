@@ -1,10 +1,13 @@
-package repository
+package movies
 
 import (
 	"encoding/json"
-	"golang-cday-lab/movies/entity"
 	"io/ioutil"
 )
+
+type MovieRepository interface {
+	GetAll() ([]Movie, error)
+}
 
 type repository struct {
 	Filename string
@@ -14,13 +17,13 @@ func NewMovieRepository(Filename string) MovieRepository {
 	return &repository{Filename}
 }
 
-func (repo *repository) GetAll() ([]entity.Movie, error) {
+func (repo *repository) GetAll() ([]Movie, error) {
 	data, err := ioutil.ReadFile(repo.Filename)
 	if err != nil {
 		return nil, err
 	}
 
-	var movies []entity.Movie
+	var movies []Movie
 	err = json.Unmarshal(data, &movies)
 	if err != nil {
 		return nil, err

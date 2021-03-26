@@ -1,8 +1,7 @@
 package main
 
 import (
-	"golang-cday-lab/movies/controller"
-	"golang-cday-lab/movies/repository"
+	"golang-cday-lab/movies"
 
 	"github.com/gin-gonic/gin"
 )
@@ -10,8 +9,8 @@ import (
 func main() {
 	r := gin.Default()
 
-	repo := repository.NewMovieRepository("db/top-rated-movies-01.json")
-	movieCtrl := controller.NewMovieController(repo)
+	repo := movies.NewMovieRepository("db/top-rated-movies-01.json")
+	movieCtrl := movies.NewMovieController(repo)
 
 	v1 := r.Group("/v1")
 	v1.GET("/movies/", movieCtrl.GetAll)
